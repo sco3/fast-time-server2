@@ -13,12 +13,12 @@ pub struct Args {
     pub log_level: String,
 
     /// IP address to listen on (required for sse)
-    #[arg(long)]
-    pub listen: Option<String>,
+    #[arg(long, default_value = "0.0.0.0")]
+    pub listen: String,
 
     /// Port to bind to (used by sse, dual, rest)
-    #[arg(long)]
-    pub port: Option<u16>,
+    #[arg(long, default_value = "8080")]
+    pub port: u16,
 
     /// Specific address for http transport
     #[arg(long)]

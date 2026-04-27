@@ -11,9 +11,7 @@ impl Args {
                 // keep silent
             }
             Transport::Sse => {
-                let listen = args.listen.as_deref().unwrap_or("0.0.0.0");
-                let port = args.port.expect("Port is required for SSE transport");
-                println!("Starting SSE on {}:{}", listen, port);
+                println!("Starting streaming http on {}:{}", args.listen, args.port);
             }
             Transport::Http => {
                 let addr = &args
@@ -23,13 +21,14 @@ impl Args {
                 println!("Starting HTTP on {}", addr);
             }
             Transport::Dual => {
-                let port = args.port.expect("Port is required for Dual transport");
                 let token = args.auth_token.as_deref().unwrap_or("no-token");
-                println!("Starting Dual mode on port {} with token {}", port, token);
+                println!(
+                    "Starting Dual mode on port {} with token {}",
+                    args.port, token
+                );
             }
             Transport::Rest => {
-                let port = args.port.expect("Port is required for REST transport");
-                println!("Starting REST server on port {}", port);
+                println!("Starting REST server on port {}", args.port);
             }
         }
         args
