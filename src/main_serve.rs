@@ -1,10 +1,7 @@
 use crate::args::Args;
-use crate::transport::Transport;
+use crate::serve_http::serve_http;
 
-pub fn serve (args: &Args) {
-    
-    if args.transport == Transport::Http {
-        
-    }
-    
+pub async fn serve(args: &Args) -> anyhow::Result<()> {
+    serve_http(args).await?;
+    Ok(())
 }

@@ -1,5 +1,5 @@
 use crate::transport::Transport;
-use clap::{Parser, ValueEnum};
+use clap::Parser;
 
 #[derive(Parser, Debug)]
 #[command(name = "fast-time-server", about = "A high-performance time server")]

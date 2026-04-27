@@ -7,7 +7,8 @@ use fast_time_server::main_serve::serve;
 // const MCP_VERSION: &str = "2025-03-26";
 
 #[tokio::main]
-async fn main() {
+async fn main() -> anyhow::Result<()> {
     let args = init_main();
-    serve(&args);
+    serve(&args).await?;
+    Ok(())
 }
