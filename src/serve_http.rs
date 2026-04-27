@@ -14,7 +14,7 @@ pub async fn serve_http(args: &Args) -> anyhow::Result<()> {
         StreamableHttpServerConfig::default().with_cancellation_token(ct.child_token()),
     );
 
-    let router = axum::Router::new().nest_service("/mcp", service);
+    let router = axum::Router::new().route_service("/", service);
     let bind_address = format!("{}:{}", args.listen.clone(), args.port);
     println!("Log level {}", args.log_level);
     println!("Serve on {bind_address}");
@@ -25,8 +25,6 @@ pub async fn serve_http(args: &Args) -> anyhow::Result<()> {
             ct.cancel();
         })
         .await;
-
     info!("ok");
-
     Ok(())
 }
